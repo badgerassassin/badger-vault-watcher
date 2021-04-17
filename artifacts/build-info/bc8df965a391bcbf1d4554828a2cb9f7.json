@@ -1,0 +1,850 @@
+{
+  "id": "bc8df965a391bcbf1d4554828a2cb9f7",
+  "_format": "hh-sol-build-info-1",
+  "solcVersion": "0.6.12",
+  "solcLongVersion": "0.6.12+commit.27d51765",
+  "input": {
+    "language": "Solidity",
+    "sources": {
+      "contracts/BadgerHarvestAllScript.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.0;\n\nimport { BadgerHarvestAllScriptLib } from \"./BadgerHarvestAllScriptLib.sol\";\n\ncontract BadgerHarvestAllScript {\n  using BadgerHarvestAllScriptLib for *;\n  constructor(address[] memory strategies) public {\n    strategies.harvestAll();\n  }\n}\n"
+      },
+      "contracts/BadgerHarvestAllScriptLib.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.0;\n\nimport { IStrategy } from \"./IStrategy.sol\";\n\nlibrary BadgerHarvestAllScriptLib {\n  function harvestAll(address[] memory strategies) internal {\n    for (uint256 i = 0; i < strategies.length; i++) {\n      IStrategy(strategies[i]).harvest();\n    }\n  }\n}\n"
+      },
+      "contracts/IStrategy.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.0;\n\ninterface IStrategy {\n  function harvest() external;\n}\n"
+      }
+    },
+    "settings": {
+      "optimizer": {
+        "enabled": false,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers"
+          ],
+          "": [
+            "ast"
+          ]
+        }
+      }
+    }
+  },
+  "output": {
+    "contracts": {
+      "contracts/BadgerHarvestAllScript.sol": {
+        "BadgerHarvestAllScript": {
+          "abi": [
+            {
+              "inputs": [
+                {
+                  "internalType": "address[]",
+                  "name": "strategies",
+                  "type": "address[]"
+                }
+              ],
+              "stateMutability": "nonpayable",
+              "type": "constructor"
+            }
+          ],
+          "evm": {
+            "bytecode": {
+              "linkReferences": {},
+              "object": "608060405234801561001057600080fd5b5060405161024b38038061024b8339818101604052602081101561003357600080fd5b810190808051604051939291908464010000000082111561005357600080fd5b8382019150602082018581111561006957600080fd5b825186602082028301116401000000008211171561008657600080fd5b8083526020830192505050908051906020019060200280838360005b838110156100bd5780820151818401526020810190506100a2565b505050509050016040525050506100dd816100e360201b6100091760201c565b50610173565b60005b815181101561016f578181815181106100fb57fe5b602002602001015173ffffffffffffffffffffffffffffffffffffffff16634641257d6040518163ffffffff1660e01b8152600401600060405180830381600087803b15801561014a57600080fd5b505af115801561015e573d6000803e3d6000fd5b5050505080806001019150506100e6565b5050565b60ca806101816000396000f3fe6080604052600080fd5b60005b8151811015609057818181518110601f57fe5b602002602001015173ffffffffffffffffffffffffffffffffffffffff16634641257d6040518163ffffffff1660e01b8152600401600060405180830381600087803b158015606d57600080fd5b505af11580156080573d6000803e3d6000fd5b505050508080600101915050600c565b505056fea2646970667358221220b8f967539340255a6ef5f4b25240908aa14d1000dca88868d71f12b6c4a098ea64736f6c634300060c0033",
+              "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x40 MLOAD PUSH2 0x24B CODESIZE SUB DUP1 PUSH2 0x24B DUP4 CODECOPY DUP2 DUP2 ADD PUSH1 0x40 MSTORE PUSH1 0x20 DUP2 LT ISZERO PUSH2 0x33 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP2 ADD SWAP1 DUP1 DUP1 MLOAD PUSH1 0x40 MLOAD SWAP4 SWAP3 SWAP2 SWAP1 DUP5 PUSH5 0x100000000 DUP3 GT ISZERO PUSH2 0x53 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP4 DUP3 ADD SWAP2 POP PUSH1 0x20 DUP3 ADD DUP6 DUP2 GT ISZERO PUSH2 0x69 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP3 MLOAD DUP7 PUSH1 0x20 DUP3 MUL DUP4 ADD GT PUSH5 0x100000000 DUP3 GT OR ISZERO PUSH2 0x86 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST DUP1 DUP4 MSTORE PUSH1 0x20 DUP4 ADD SWAP3 POP POP POP SWAP1 DUP1 MLOAD SWAP1 PUSH1 0x20 ADD SWAP1 PUSH1 0x20 MUL DUP1 DUP4 DUP4 PUSH1 0x0 JUMPDEST DUP4 DUP2 LT ISZERO PUSH2 0xBD JUMPI DUP1 DUP3 ADD MLOAD DUP2 DUP5 ADD MSTORE PUSH1 0x20 DUP2 ADD SWAP1 POP PUSH2 0xA2 JUMP JUMPDEST POP POP POP POP SWAP1 POP ADD PUSH1 0x40 MSTORE POP POP POP PUSH2 0xDD DUP2 PUSH2 0xE3 PUSH1 0x20 SHL PUSH2 0x9 OR PUSH1 0x20 SHR JUMP JUMPDEST POP PUSH2 0x173 JUMP JUMPDEST PUSH1 0x0 JUMPDEST DUP2 MLOAD DUP2 LT ISZERO PUSH2 0x16F JUMPI DUP2 DUP2 DUP2 MLOAD DUP2 LT PUSH2 0xFB JUMPI INVALID JUMPDEST PUSH1 0x20 MUL PUSH1 0x20 ADD ADD MLOAD PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND PUSH4 0x4641257D PUSH1 0x40 MLOAD DUP2 PUSH4 0xFFFFFFFF AND PUSH1 0xE0 SHL DUP2 MSTORE PUSH1 0x4 ADD PUSH1 0x0 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 PUSH1 0x0 DUP8 DUP1 EXTCODESIZE ISZERO DUP1 ISZERO PUSH2 0x14A JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP GAS CALL ISZERO DUP1 ISZERO PUSH2 0x15E JUMPI RETURNDATASIZE PUSH1 0x0 DUP1 RETURNDATACOPY RETURNDATASIZE PUSH1 0x0 REVERT JUMPDEST POP POP POP POP DUP1 DUP1 PUSH1 0x1 ADD SWAP2 POP POP PUSH2 0xE6 JUMP JUMPDEST POP POP JUMP JUMPDEST PUSH1 0xCA DUP1 PUSH2 0x181 PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x0 JUMPDEST DUP2 MLOAD DUP2 LT ISZERO PUSH1 0x90 JUMPI DUP2 DUP2 DUP2 MLOAD DUP2 LT PUSH1 0x1F JUMPI INVALID JUMPDEST PUSH1 0x20 MUL PUSH1 0x20 ADD ADD MLOAD PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND PUSH4 0x4641257D PUSH1 0x40 MLOAD DUP2 PUSH4 0xFFFFFFFF AND PUSH1 0xE0 SHL DUP2 MSTORE PUSH1 0x4 ADD PUSH1 0x0 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 PUSH1 0x0 DUP8 DUP1 EXTCODESIZE ISZERO DUP1 ISZERO PUSH1 0x6D JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP GAS CALL ISZERO DUP1 ISZERO PUSH1 0x80 JUMPI RETURNDATASIZE PUSH1 0x0 DUP1 RETURNDATACOPY RETURNDATASIZE PUSH1 0x0 REVERT JUMPDEST POP POP POP POP DUP1 DUP1 PUSH1 0x1 ADD SWAP2 POP POP PUSH1 0xC JUMP JUMPDEST POP POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xB8 0xF9 PUSH8 0x539340255A6EF5F4 0xB2 MSTORE BLOCKHASH SWAP1 DUP11 LOG1 0x4D LT STOP 0xDC 0xA8 DUP9 PUSH9 0xD71F12B6C4A098EA64 PUSH20 0x6F6C634300060C00330000000000000000000000 ",
+              "sourceMap": "135:161:0:-:0;;;212:82;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;266:23;:10;:21;;;;;:23;;:::i;:::-;212:82;135:161;;141:165:1;210:9;205:97;229:10;:17;225:1;:21;205:97;;;271:10;282:1;271:13;;;;;;;;;;;;;;261:32;;;:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;248:3;;;;;;;205:97;;;;141:165;:::o;135:161:0:-;;;;;;;"
+            },
+            "deployedBytecode": {
+              "immutableReferences": {},
+              "linkReferences": {},
+              "object": "6080604052600080fd5b60005b8151811015609057818181518110601f57fe5b602002602001015173ffffffffffffffffffffffffffffffffffffffff16634641257d6040518163ffffffff1660e01b8152600401600060405180830381600087803b158015606d57600080fd5b505af11580156080573d6000803e3d6000fd5b505050508080600101915050600c565b505056fea2646970667358221220b8f967539340255a6ef5f4b25240908aa14d1000dca88868d71f12b6c4a098ea64736f6c634300060c0033",
+              "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x0 JUMPDEST DUP2 MLOAD DUP2 LT ISZERO PUSH1 0x90 JUMPI DUP2 DUP2 DUP2 MLOAD DUP2 LT PUSH1 0x1F JUMPI INVALID JUMPDEST PUSH1 0x20 MUL PUSH1 0x20 ADD ADD MLOAD PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND PUSH4 0x4641257D PUSH1 0x40 MLOAD DUP2 PUSH4 0xFFFFFFFF AND PUSH1 0xE0 SHL DUP2 MSTORE PUSH1 0x4 ADD PUSH1 0x0 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 PUSH1 0x0 DUP8 DUP1 EXTCODESIZE ISZERO DUP1 ISZERO PUSH1 0x6D JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP GAS CALL ISZERO DUP1 ISZERO PUSH1 0x80 JUMPI RETURNDATASIZE PUSH1 0x0 DUP1 RETURNDATACOPY RETURNDATASIZE PUSH1 0x0 REVERT JUMPDEST POP POP POP POP DUP1 DUP1 PUSH1 0x1 ADD SWAP2 POP POP PUSH1 0xC JUMP JUMPDEST POP POP JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xB8 0xF9 PUSH8 0x539340255A6EF5F4 0xB2 MSTORE BLOCKHASH SWAP1 DUP11 LOG1 0x4D LT STOP 0xDC 0xA8 DUP9 PUSH9 0xD71F12B6C4A098EA64 PUSH20 0x6F6C634300060C00330000000000000000000000 ",
+              "sourceMap": "135:161:0:-:0;;;;;;141:165:1;210:9;205:97;229:10;:17;225:1;:21;205:97;;;271:10;282:1;271:13;;;;;;;;;;;;;;261:32;;;:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;248:3;;;;;;;205:97;;;;141:165;:::o"
+            },
+            "methodIdentifiers": {}
+          }
+        }
+      },
+      "contracts/BadgerHarvestAllScriptLib.sol": {
+        "BadgerHarvestAllScriptLib": {
+          "abi": [],
+          "evm": {
+            "bytecode": {
+              "linkReferences": {},
+              "object": "60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212201cefc05e3bc0a0eabb774a8e2eda4737cbf69afab8ed942d3d648a9f9d92e3e264736f6c634300060c0033",
+              "opcodes": "PUSH1 0x56 PUSH1 0x23 PUSH1 0xB DUP3 DUP3 DUP3 CODECOPY DUP1 MLOAD PUSH1 0x0 BYTE PUSH1 0x73 EQ PUSH1 0x16 JUMPI INVALID JUMPDEST ADDRESS PUSH1 0x0 MSTORE PUSH1 0x73 DUP2 MSTORE8 DUP3 DUP2 RETURN INVALID PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 SHR 0xEF 0xC0 0x5E EXTCODESIZE 0xC0 LOG0 0xEA 0xBB PUSH24 0x4A8E2EDA4737CBF69AFAB8ED942D3D648A9F9D92E3E26473 PUSH16 0x6C634300060C00330000000000000000 ",
+              "sourceMap": "103:205:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;"
+            },
+            "deployedBytecode": {
+              "immutableReferences": {},
+              "linkReferences": {},
+              "object": "73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212201cefc05e3bc0a0eabb774a8e2eda4737cbf69afab8ed942d3d648a9f9d92e3e264736f6c634300060c0033",
+              "opcodes": "PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 SHR 0xEF 0xC0 0x5E EXTCODESIZE 0xC0 LOG0 0xEA 0xBB PUSH24 0x4A8E2EDA4737CBF69AFAB8ED942D3D648A9F9D92E3E26473 PUSH16 0x6C634300060C00330000000000000000 ",
+              "sourceMap": "103:205:1:-:0;;;;;;;;"
+            },
+            "methodIdentifiers": {}
+          }
+        }
+      },
+      "contracts/IStrategy.sol": {
+        "IStrategy": {
+          "abi": [
+            {
+              "inputs": [],
+              "name": "harvest",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            }
+          ],
+          "evm": {
+            "bytecode": {
+              "linkReferences": {},
+              "object": "",
+              "opcodes": "",
+              "sourceMap": ""
+            },
+            "deployedBytecode": {
+              "immutableReferences": {},
+              "linkReferences": {},
+              "object": "",
+              "opcodes": "",
+              "sourceMap": ""
+            },
+            "methodIdentifiers": {
+              "harvest()": "4641257d"
+            }
+          }
+        }
+      }
+    },
+    "sources": {
+      "contracts/BadgerHarvestAllScript.sol": {
+        "ast": {
+          "absolutePath": "contracts/BadgerHarvestAllScript.sol",
+          "exportedSymbols": {
+            "BadgerHarvestAllScript": [
+              18
+            ]
+          },
+          "id": 19,
+          "license": "MIT",
+          "nodeType": "SourceUnit",
+          "nodes": [
+            {
+              "id": 1,
+              "literals": [
+                "solidity",
+                "^",
+                "0.6",
+                ".0"
+              ],
+              "nodeType": "PragmaDirective",
+              "src": "32:23:0"
+            },
+            {
+              "absolutePath": "contracts/BadgerHarvestAllScriptLib.sol",
+              "file": "./BadgerHarvestAllScriptLib.sol",
+              "id": 3,
+              "nodeType": "ImportDirective",
+              "scope": 19,
+              "sourceUnit": 52,
+              "src": "57:76:0",
+              "symbolAliases": [
+                {
+                  "foreign": {
+                    "argumentTypes": null,
+                    "id": 2,
+                    "name": "BadgerHarvestAllScriptLib",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": null,
+                    "src": "66:25:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": null,
+                      "typeString": null
+                    }
+                  },
+                  "local": null
+                }
+              ],
+              "unitAlias": ""
+            },
+            {
+              "abstract": false,
+              "baseContracts": [],
+              "contractDependencies": [],
+              "contractKind": "contract",
+              "documentation": null,
+              "fullyImplemented": true,
+              "id": 18,
+              "linearizedBaseContracts": [
+                18
+              ],
+              "name": "BadgerHarvestAllScript",
+              "nodeType": "ContractDefinition",
+              "nodes": [
+                {
+                  "id": 5,
+                  "libraryName": {
+                    "contractScope": null,
+                    "id": 4,
+                    "name": "BadgerHarvestAllScriptLib",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 51,
+                    "src": "177:25:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_BadgerHarvestAllScriptLib_$51",
+                      "typeString": "library BadgerHarvestAllScriptLib"
+                    }
+                  },
+                  "nodeType": "UsingForDirective",
+                  "src": "171:38:0",
+                  "typeName": null
+                },
+                {
+                  "body": {
+                    "id": 16,
+                    "nodeType": "Block",
+                    "src": "260:34:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 11,
+                              "name": "strategies",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 8,
+                              "src": "266:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                "typeString": "address[] memory"
+                              }
+                            },
+                            "id": 13,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "harvestAll",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 50,
+                            "src": "266:21:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_nonpayable$_t_array$_t_address_$dyn_memory_ptr_$returns$__$bound_to$_t_array$_t_address_$dyn_memory_ptr_$",
+                              "typeString": "function (address[] memory)"
+                            }
+                          },
+                          "id": 14,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "266:23:0",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 15,
+                        "nodeType": "ExpressionStatement",
+                        "src": "266:23:0"
+                      }
+                    ]
+                  },
+                  "documentation": null,
+                  "id": 17,
+                  "implemented": true,
+                  "kind": "constructor",
+                  "modifiers": [],
+                  "name": "",
+                  "nodeType": "FunctionDefinition",
+                  "overrides": null,
+                  "parameters": {
+                    "id": 9,
+                    "nodeType": "ParameterList",
+                    "parameters": [
+                      {
+                        "constant": false,
+                        "id": 8,
+                        "mutability": "mutable",
+                        "name": "strategies",
+                        "nodeType": "VariableDeclaration",
+                        "overrides": null,
+                        "scope": 17,
+                        "src": "224:27:0",
+                        "stateVariable": false,
+                        "storageLocation": "memory",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                          "typeString": "address[]"
+                        },
+                        "typeName": {
+                          "baseType": {
+                            "id": 6,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "224:7:0",
+                            "stateMutability": "nonpayable",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "id": 7,
+                          "length": null,
+                          "nodeType": "ArrayTypeName",
+                          "src": "224:9:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                            "typeString": "address[]"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "src": "223:29:0"
+                  },
+                  "returnParameters": {
+                    "id": 10,
+                    "nodeType": "ParameterList",
+                    "parameters": [],
+                    "src": "260:0:0"
+                  },
+                  "scope": 18,
+                  "src": "212:82:0",
+                  "stateMutability": "nonpayable",
+                  "virtual": false,
+                  "visibility": "public"
+                }
+              ],
+              "scope": 19,
+              "src": "135:161:0"
+            }
+          ],
+          "src": "32:265:0"
+        },
+        "id": 0
+      },
+      "contracts/BadgerHarvestAllScriptLib.sol": {
+        "ast": {
+          "absolutePath": "contracts/BadgerHarvestAllScriptLib.sol",
+          "exportedSymbols": {
+            "BadgerHarvestAllScriptLib": [
+              51
+            ]
+          },
+          "id": 52,
+          "license": "MIT",
+          "nodeType": "SourceUnit",
+          "nodes": [
+            {
+              "id": 20,
+              "literals": [
+                "solidity",
+                "^",
+                "0.6",
+                ".0"
+              ],
+              "nodeType": "PragmaDirective",
+              "src": "32:23:1"
+            },
+            {
+              "absolutePath": "contracts/IStrategy.sol",
+              "file": "./IStrategy.sol",
+              "id": 22,
+              "nodeType": "ImportDirective",
+              "scope": 52,
+              "sourceUnit": 58,
+              "src": "57:44:1",
+              "symbolAliases": [
+                {
+                  "foreign": {
+                    "argumentTypes": null,
+                    "id": 21,
+                    "name": "IStrategy",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": null,
+                    "src": "66:9:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": null,
+                      "typeString": null
+                    }
+                  },
+                  "local": null
+                }
+              ],
+              "unitAlias": ""
+            },
+            {
+              "abstract": false,
+              "baseContracts": [],
+              "contractDependencies": [],
+              "contractKind": "library",
+              "documentation": null,
+              "fullyImplemented": true,
+              "id": 51,
+              "linearizedBaseContracts": [
+                51
+              ],
+              "name": "BadgerHarvestAllScriptLib",
+              "nodeType": "ContractDefinition",
+              "nodes": [
+                {
+                  "body": {
+                    "id": 49,
+                    "nodeType": "Block",
+                    "src": "199:107:1",
+                    "statements": [
+                      {
+                        "body": {
+                          "id": 47,
+                          "nodeType": "Block",
+                          "src": "253:49:1",
+                          "statements": [
+                            {
+                              "expression": {
+                                "argumentTypes": null,
+                                "arguments": [],
+                                "expression": {
+                                  "argumentTypes": [],
+                                  "expression": {
+                                    "argumentTypes": null,
+                                    "arguments": [
+                                      {
+                                        "argumentTypes": null,
+                                        "baseExpression": {
+                                          "argumentTypes": null,
+                                          "id": 40,
+                                          "name": "strategies",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 25,
+                                          "src": "271:10:1",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                            "typeString": "address[] memory"
+                                          }
+                                        },
+                                        "id": 42,
+                                        "indexExpression": {
+                                          "argumentTypes": null,
+                                          "id": 41,
+                                          "name": "i",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 29,
+                                          "src": "282:1:1",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                          }
+                                        },
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "nodeType": "IndexAccess",
+                                        "src": "271:13:1",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_address",
+                                          "typeString": "address"
+                                        }
+                                      }
+                                    ],
+                                    "expression": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_address",
+                                          "typeString": "address"
+                                        }
+                                      ],
+                                      "id": 39,
+                                      "name": "IStrategy",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 57,
+                                      "src": "261:9:1",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_type$_t_contract$_IStrategy_$57_$",
+                                        "typeString": "type(contract IStrategy)"
+                                      }
+                                    },
+                                    "id": 43,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "kind": "typeConversion",
+                                    "lValueRequested": false,
+                                    "names": [],
+                                    "nodeType": "FunctionCall",
+                                    "src": "261:24:1",
+                                    "tryCall": false,
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_contract$_IStrategy_$57",
+                                      "typeString": "contract IStrategy"
+                                    }
+                                  },
+                                  "id": 44,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "memberName": "harvest",
+                                  "nodeType": "MemberAccess",
+                                  "referencedDeclaration": 56,
+                                  "src": "261:32:1",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_function_external_nonpayable$__$returns$__$",
+                                    "typeString": "function () external"
+                                  }
+                                },
+                                "id": 45,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "kind": "functionCall",
+                                "lValueRequested": false,
+                                "names": [],
+                                "nodeType": "FunctionCall",
+                                "src": "261:34:1",
+                                "tryCall": false,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_tuple$__$",
+                                  "typeString": "tuple()"
+                                }
+                              },
+                              "id": 46,
+                              "nodeType": "ExpressionStatement",
+                              "src": "261:34:1"
+                            }
+                          ]
+                        },
+                        "condition": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 35,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "argumentTypes": null,
+                            "id": 32,
+                            "name": "i",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 29,
+                            "src": "225:1:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "<",
+                          "rightExpression": {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 33,
+                              "name": "strategies",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 25,
+                              "src": "229:10:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                                "typeString": "address[] memory"
+                              }
+                            },
+                            "id": 34,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "length",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "229:17:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "225:21:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 48,
+                        "initializationExpression": {
+                          "assignments": [
+                            29
+                          ],
+                          "declarations": [
+                            {
+                              "constant": false,
+                              "id": 29,
+                              "mutability": "mutable",
+                              "name": "i",
+                              "nodeType": "VariableDeclaration",
+                              "overrides": null,
+                              "scope": 48,
+                              "src": "210:9:1",
+                              "stateVariable": false,
+                              "storageLocation": "default",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "typeName": {
+                                "id": 28,
+                                "name": "uint256",
+                                "nodeType": "ElementaryTypeName",
+                                "src": "210:7:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              "value": null,
+                              "visibility": "internal"
+                            }
+                          ],
+                          "id": 31,
+                          "initialValue": {
+                            "argumentTypes": null,
+                            "hexValue": "30",
+                            "id": 30,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "222:1:1",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_0_by_1",
+                              "typeString": "int_const 0"
+                            },
+                            "value": "0"
+                          },
+                          "nodeType": "VariableDeclarationStatement",
+                          "src": "210:13:1"
+                        },
+                        "loopExpression": {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 37,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "UnaryOperation",
+                            "operator": "++",
+                            "prefix": false,
+                            "src": "248:3:1",
+                            "subExpression": {
+                              "argumentTypes": null,
+                              "id": 36,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 29,
+                              "src": "248:1:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "id": 38,
+                          "nodeType": "ExpressionStatement",
+                          "src": "248:3:1"
+                        },
+                        "nodeType": "ForStatement",
+                        "src": "205:97:1"
+                      }
+                    ]
+                  },
+                  "documentation": null,
+                  "id": 50,
+                  "implemented": true,
+                  "kind": "function",
+                  "modifiers": [],
+                  "name": "harvestAll",
+                  "nodeType": "FunctionDefinition",
+                  "overrides": null,
+                  "parameters": {
+                    "id": 26,
+                    "nodeType": "ParameterList",
+                    "parameters": [
+                      {
+                        "constant": false,
+                        "id": 25,
+                        "mutability": "mutable",
+                        "name": "strategies",
+                        "nodeType": "VariableDeclaration",
+                        "overrides": null,
+                        "scope": 50,
+                        "src": "161:27:1",
+                        "stateVariable": false,
+                        "storageLocation": "memory",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                          "typeString": "address[]"
+                        },
+                        "typeName": {
+                          "baseType": {
+                            "id": 23,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "161:7:1",
+                            "stateMutability": "nonpayable",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "id": 24,
+                          "length": null,
+                          "nodeType": "ArrayTypeName",
+                          "src": "161:9:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                            "typeString": "address[]"
+                          }
+                        },
+                        "value": null,
+                        "visibility": "internal"
+                      }
+                    ],
+                    "src": "160:29:1"
+                  },
+                  "returnParameters": {
+                    "id": 27,
+                    "nodeType": "ParameterList",
+                    "parameters": [],
+                    "src": "199:0:1"
+                  },
+                  "scope": 51,
+                  "src": "141:165:1",
+                  "stateMutability": "nonpayable",
+                  "virtual": false,
+                  "visibility": "internal"
+                }
+              ],
+              "scope": 52,
+              "src": "103:205:1"
+            }
+          ],
+          "src": "32:277:1"
+        },
+        "id": 1
+      },
+      "contracts/IStrategy.sol": {
+        "ast": {
+          "absolutePath": "contracts/IStrategy.sol",
+          "exportedSymbols": {
+            "IStrategy": [
+              57
+            ]
+          },
+          "id": 58,
+          "license": "MIT",
+          "nodeType": "SourceUnit",
+          "nodes": [
+            {
+              "id": 53,
+              "literals": [
+                "solidity",
+                "^",
+                "0.6",
+                ".0"
+              ],
+              "nodeType": "PragmaDirective",
+              "src": "32:23:2"
+            },
+            {
+              "abstract": false,
+              "baseContracts": [],
+              "contractDependencies": [],
+              "contractKind": "interface",
+              "documentation": null,
+              "fullyImplemented": false,
+              "id": 57,
+              "linearizedBaseContracts": [
+                57
+              ],
+              "name": "IStrategy",
+              "nodeType": "ContractDefinition",
+              "nodes": [
+                {
+                  "body": null,
+                  "documentation": null,
+                  "functionSelector": "4641257d",
+                  "id": 56,
+                  "implemented": false,
+                  "kind": "function",
+                  "modifiers": [],
+                  "name": "harvest",
+                  "nodeType": "FunctionDefinition",
+                  "overrides": null,
+                  "parameters": {
+                    "id": 54,
+                    "nodeType": "ParameterList",
+                    "parameters": [],
+                    "src": "97:2:2"
+                  },
+                  "returnParameters": {
+                    "id": 55,
+                    "nodeType": "ParameterList",
+                    "parameters": [],
+                    "src": "108:0:2"
+                  },
+                  "scope": 57,
+                  "src": "81:28:2",
+                  "stateMutability": "nonpayable",
+                  "virtual": false,
+                  "visibility": "external"
+                }
+              ],
+              "scope": 58,
+              "src": "57:54:2"
+            }
+          ],
+          "src": "32:80:2"
+        },
+        "id": 2
+      }
+    }
+  }
+}
